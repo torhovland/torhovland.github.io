@@ -41,8 +41,8 @@ author:
   name: Tor Hovland
   github: torhovland    # eg. daattali
   twitter: torhovland   # eg. daattali
-  linkedin: torhovland  # eg. "pub/dean-attali/8/946/143"
-  stackoverflow: tor-hovland  # eg. "3943160/daattali"
+  linkedin: in/torhovland  # eg. "pub/dean-attali/8/946/143"
+  stackoverflow: 29083/tor-hovland  # eg. "3943160/daattali"
 
 # Select which links to show in the footer
 footer-links-active:

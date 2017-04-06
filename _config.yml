@@ -61,7 +61,7 @@ url-pretty: "blog.hovland.xyz"  # eg. "deanattali.com/beautiful-jekyll"
 # --- Misc --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-disqus: "torhovland"
+disqus: "blog-hovland-xyz"
 
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-76792687-1"

@@ -7,7 +7,6 @@ subtitle: Poor man's delegation in .NET Core
 [OpenID Connect](http://openid.net/connect/) and [OAuth2](https://oauth.net/2/) are great solutions for secure authentication in web apps and mobile apps, and for securely allowing an app to access a backend service on behalf of the user. But they aren't all that fun to work with when you need the user identity to flow from one service to other services. In a microservices architecture, that scenario quickly becomes relevant. Sure, you don't always _need_ the user identity to flow to all the services. If you depend on a service to retrieve stock market data, that service probably doesn't need to know who you are or even care that a human is asking. If, on the other hand, a backend service for a mobile exercise app needs to ask a workout service to log a workout, that service needs to know which user to log the workout for. How do you do that securely? Of course you can't just post the username along with the workout data. That might work, however, if you also made sure that only trusted services were allowed to call the workout service. But you can't do that if you want all your microservices to provide external APIs.
 
 What can the industry guidance on microservices tell us about this problem? Well, Sam Newman's [Building Microservices](https://www.amazon.com/Building-Microservices-Designing-Fine-Grained-Systems/dp/1491950358) doesn't give us a lot of hope: 
-
 > "This problem, unfortunately, has no simple answer, because it isn’t a simple problem."
 
 I think he's exaggerating, though, and that is the point of this article.
@@ -28,7 +27,7 @@ JWT, by the way, stands for JSON Web Tokens. Although they look encrypted, that'
 
 Another great debugging tool is [Postman](https://www.getpostman.com/). You can use it to call your services with the Authorization HTTP header set to `Bearer <token>`, and it will show you the exact errors in the case of a token validation error.
 
-![Postman](https://github.com/torhovland/torhovland.github.io/raw/master/img/postman.png)
+![Postman](https://github.com/torhovland/torhovland.github.io/raw/master/img/jwt-postman.png)
 
 Anyway, let's see how to implement the poor man's delegation in .NET Core. Say we have a client calling service A, which in turn calls service B. We want both services to know the identity of the user. Note that this particular example uses Azure AD as authorization server, but you could really be using any authorization server capable of handing out JWTs. 
 
@@ -117,9 +116,9 @@ OK, so a service can call another service. But what do we need to do to enable t
 
 I won't show the code for the Javascript client here, as there is nothing special about it. If you're interested, see the GitHub link at the bottom. I just copied an [ADAL.js sample](https://github.com/Azure-Samples/active-directory-angularjs-singlepageapp) from Microsoft and modified it to present the sample strings from my services. But any OpenID Connect client would work.
 
-![Client](https://github.com/torhovland/torhovland.github.io/raw/master/img/jwt-client.png)
+![Client](https://github.com/torhovland/torhovland.github.io/raw/master/img/jwt-client-js.png)
 
 That's basically it. While the full delegation mechanism, where each service asks the authorization service to convert the incoming access token to a new token, is elegant in a _completeness_ sense, the passing of a single JWT token as I have demonstrated here is certainly elegant in a _simplicity_ sense. It gives you secure identification of users among a set of microservices, and it does so in a way that is very simple to implement and maintain.
 
 In order to run the client app, you will also have to add CORS to the backend services. Take a look at the sample code to see how to do that. It's available here:
-[https://github.com/torhovland/microservices-jwt-delegation]
+<https://github.com/torhovland/microservices-jwt-delegation>

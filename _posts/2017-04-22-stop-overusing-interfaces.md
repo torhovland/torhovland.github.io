@@ -154,5 +154,7 @@ Please note that I'm not saying that interfaces are always bad. When they add va
 
 The next time you are tempted to take a single class, extract a single interface from it, and name it the same as the class with an `I` in front, think twice.
 
+Does this make sense to you, or do you disagree? Please share your opinion in the comments below.
+
 The sample source code used in this article is available here:
 <https://github.com/torhovland/dependency-injection-without-interfaces>

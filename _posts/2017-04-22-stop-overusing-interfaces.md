@@ -5,6 +5,8 @@ subtitle: Dependency Injection using concrete classes
 bigimg: /img/duplicate-content.jpg
 ---
 
+[Illustration from [simpleprogrammer.com](https://simpleprogrammer.com/2012/05/27/types-of-duplication-in-code/)]
+
 Do you use Dependency Injection? Of course you do, you're a responsible programmer, and you care about clean, maintainable, [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) code with low coupling. You know perfectly well that [New is Glue](http://ardalis.com/new-is-glue), and you understand the value of [programming to interfaces, not implementations](https://softwareengineering.stackexchange.com/questions/232359/understanding-programming-to-an-interface).
 
 So do I, but please note that none of this means you should pair each and every one of your domain classes with a more or less identical interface. I suggest that you should prefer working with your concrete domain classes instead. This may sound like a dirty hack to you, but my claim is that doing this will in fact _improve_ the quality of your code. Pairing every class with an interface, on the other hand, is an [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern).

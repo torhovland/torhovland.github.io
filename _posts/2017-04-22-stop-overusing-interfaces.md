@@ -2,6 +2,7 @@
 layout: post
 title: Stop overusing interfaces
 subtitle: Dependency Injection using concrete classes
+bigimg: /img/duplicate-content.jpg
 ---
 
 Do you use Dependency Injection? Of course you do, you're a responsible programmer, and you care about clean, maintainable, [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) code with low coupling. You know perfectly well that [New is Glue](http://ardalis.com/new-is-glue), and you understand the value of [programming to interfaces, not implementations](https://softwareengineering.stackexchange.com/questions/232359/understanding-programming-to-an-interface).

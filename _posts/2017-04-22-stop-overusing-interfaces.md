@@ -42,7 +42,7 @@ Perhaps you do this because you think it is dictated by SOLID, DDD or DI, but th
 
 So what's actually the problem? Well, the thing is that all classes already expose interfaces to begin with. The set of all non-private class members is an interface. If you decide to create an `interface IFoo` definition that matches the public members of `Foo`, you will simply have duplicated the interface of `Foo` and added no real abstraction and zero value. Browsing code like this is no fun whenever you go to a definition, expecting to get to a class implementation, and just ending up in an interface, where you need to do another step to go to the implementation.
 
-But I need this interfaces to make Dependecy Injection work, I hear you say. No, you don't. Let me demonstrate. Let's say you have a method that needs to call a domain object in order to create an order:
+But I need this interfaces to make Dependency Injection work, I hear you say. No, you don't. Let me demonstrate. Let's say you have a method that needs to call a domain object in order to create an order:
 
 ```c#
 public async Task<IActionResult> Order()
@@ -161,3 +161,14 @@ Does this make sense to you, or do you disagree? Please share your opinion in th
 
 The sample source code used in this article is available here:
 <https://github.com/torhovland/dependency-injection-without-interfaces>
+
+> __Update 2017-04-24__
+>
+> Some have pointed out that making a method virtual, like I do with `Save()` above, is not without its own set of 
+> maintenance issues. It's a design decision that you need to be conscious about.
+>
+> If you have a very high test coverage of mocking tests and you are not comfortable 
+> with making your methods virtual, then sure, maybe interfaces is indeed a better option for you.
+>
+> The point of this article is not to say that using DI with interfaces is bad. My point is that you shouldn't 
+> automatically put interfaces on everything without thinking, but certainly use them when you need them. 

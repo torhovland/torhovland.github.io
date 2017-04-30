@@ -2,7 +2,7 @@
 layout: post
 title: Haskell Functions on Azure Functions
 subtitle: Running serverless, asynchronous, and fully autonomous microservices (not just Haskell).
-bigimg: /img/haskell-azure-functions.png
+bigimg: /img/haskell-azure-functions.jpg
 ---
 
 Isn't it ironic how, when we think of microservices, we also tend to think about REST services? A microservices architecture is about autonomous services, in other words, services that are able to do their job without relying on help from other services. Earlier this month I wrote about [service to service delegation using JWT tokens](http://blog.hovland.xyz/2017-04-09-simple-and-elegant-microservices-authentication-using-JWT/). That is a useful technique, but in some way, it also represents the opposite of autonomous services.

@@ -52,13 +52,13 @@ In contrast with the `fizzBuzz` function, which is _pure_, this one is defined t
 
 Let's look at `putStrLn . fizzBuzz . read . head` first. Imagine we instead had `putStrLn(fizzBuzz(read(head args)))`. `head` would take the first command line arguments and `read` would turn it into an integer. Then our `fizzBuzz` function would process it, and finally `putStrLn` would output the result to the console. `putStrLn . fizzBuzz . read . head` takes that chain of functions and replaces it with a combined function. However, we can't simply include `getArgs` in that chain, because it produces an _impure_ list of strings, and `head` requires a _pure_ list, i.e. one that is not wrapped in `IO ()`. However, the `>>=` operator is a bind operator that pulls out the actual value from the _impure_ value and calls our function chain on it.
 
-Anyway, we can now build and test our program, using (this guide)[https://wiki.haskell.org/How_to_write_a_Haskell_program]:
+Anyway, we can now build and test our program, using [this guide](https://wiki.haskell.org/How_to_write_a_Haskell_program):
 
 ```sh
 $ cabal init
 $ cabal sandbox init
 $ cabal install -j
-$ .cabal-sandbox\bin\FizzBuzzServer.exe 5
+$ .cabal-sandbox/bin/FizzBuzzServer.exe 5
 5 becomes Buzz
 ```
 
@@ -91,7 +91,8 @@ Now, if you add one of the sample PowerShell functions to your newly created Fun
     }
   ],
   "disabled": false
-}```
+}
+```
 
 The reference to `haskellstorage_STORAGE` is something you can set up in the portal before you clone the repository:
 

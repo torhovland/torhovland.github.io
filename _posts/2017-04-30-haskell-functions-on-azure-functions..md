@@ -221,3 +221,6 @@ Received: 20 becomes Buzz
 The responses come out of order, just as you would expect. That's totally OK in many use cases. If you do need ordering, there are of course ways to tackle that, such as caching the responses on the client and letting it take care of ordering them.
 
 Anyway, this should be enough for you to ace that job interview :-)
+
+The sample source code used in this article is available here:
+<https://github.com/torhovland/haskell-functions-on-azure-functions>

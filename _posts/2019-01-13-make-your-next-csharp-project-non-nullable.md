@@ -2,7 +2,6 @@
 layout: post
 title: Make your next C# project non-nullable
 subtitle: Getting rid of `NullReferenceException` once and for all
-bigimg: /img/non-nullable/NullReferenceException.png
 ---
 
 I'm sure you're well aware how the `null` value is responsible for loads of extra, uninspiring code, and tons and tons of exceptions and crashes. Tony Hoare came up with this "innovation" in 1965, and he has later apologized for what he calls a [_billion dollar mistake_](https://en.wikipedia.org/wiki/Null_pointer#History). 

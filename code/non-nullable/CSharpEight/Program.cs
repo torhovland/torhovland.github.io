@@ -4,7 +4,7 @@
     {
         void Main()
         {
-            // var myClass = new MyClass(null, null);
+            var myClass = new MyClass(null, null);
         }
     }
 }

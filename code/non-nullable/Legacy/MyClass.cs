@@ -16,7 +16,7 @@ namespace Legacy
             _requiredField = requiredField 
                 ?? throw new ArgumentNullException(
                     nameof(requiredField),
-                    "requiredField er obligatorisk i MyClass.");
+                    "requiredField is required in MyClass.");
 
             _optionalField = optionalField;
         }

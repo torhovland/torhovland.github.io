@@ -18,9 +18,12 @@ namespace CSharpEight
         {
             var l1 = _requiredField.Length;
             var l2 = _optionalField?.Length ?? 0;
-            // var l3 = _optionalField.Length;
+            var l3 = _optionalField.Length;
         }
     }
 }
+
+
+
 
 

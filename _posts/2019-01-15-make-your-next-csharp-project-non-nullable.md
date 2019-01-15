@@ -12,7 +12,7 @@ Here's an example of the extra null checking we need to do. What we really want 
 
 You might find it pointless to simply substitute one exception (`NullReferenceException`) with another (`ArgumentNullException`), but it really isn't. A `NullReferenceException` can emerge from deep within your code, without any hint about what shouldn't have been `null`, forcing you to sit down and inspect or debug the code in order to find out what's wrong. If you're lucky you have symbol files with a reference to the line number where the exception was thrown, but in production code the line numbers are often wrong due to optimized code, or the symbol files are missing altogether. An `ArgumentNullException` is much more helpful, because it will refer to the problematic argument and hopefully also provide a meaningful error message.
 
-Unfortunately, it's often not possible to know whether or not a reference can be null. That leaves us with the choice of sprinkling `null` checks all over the code, or just making vague assumptions that some references will never be `null`. Here's an example of the former: 
+Unfortunately, it's often not possible to know whether a reference can be null. That leaves us with the choice of sprinkling `null` checks all over the code, or just making vague assumptions that some references will never be `null`. Here's an example of the former: 
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/excessive-null-checking.png)
 
@@ -43,7 +43,7 @@ I will get a similar warning if I try to dereference `optionalField` without che
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/resharper-null-reference.png)
 
-This is really helpful, but far from perfect. First, these are just helpful hints and not compile errors. Second, they rely on a third-party tool.  Third, you're not forced to annotate all the code, so the problem never really goes away. And ReSharper defaults to an _optimistic_ analysis, meaning that when annotations are missing, avoiding false alarms is deemed more important than pointing out all potential code issues. Fourth, all these annotations aren't exactly making the code any prettier.
+This is really useful, but far from perfect. First, these are just helpful hints and not compile errors. Second, they rely on a third-party tool.  Third, you're not forced to annotate all the code, so the problem never really goes away. And ReSharper defaults to an _optimistic_ analysis, meaning that when annotations are missing, avoiding false alarms is deemed more important than pointing out all potential code issues. Fourth, all these annotations aren't exactly making the code any prettier.
 
 Luckily, we no longer have to concern ourselves with any of that, because C# 8 comes with _nullable reference types_ built-in. The naming is a bit confusing, because reference types have always been nullable, and that's the whole problem. The novelty is that they can now also be _non-nullable_. The reason for the name is that reference types can now be _non-nullable_ by default, or explicitly _nullable_ using `Nullable<T>` or `T?`. For backward compatibility, you need to enable the feature in the code or project files. Also, any issues detected by the compiler are just warnings by default, so you may want to treat warnings as errors.
 

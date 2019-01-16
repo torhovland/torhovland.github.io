@@ -6,17 +6,17 @@ subtitle: Getting rid of NullReferenceException once and for all
 
 I'm sure you're well aware how the `null` value is responsible for loads of extra, uninspiring code, and tons and tons of exceptions and crashes. Tony Hoare came up with this "innovation" in 1965. He later apologized for what he calls a [_billion dollar mistake_](https://en.wikipedia.org/wiki/Null_pointer#History). 
 
-Here's an example of the extra null checking we need to do. What we really want is that `requiredField` can never be `null`, but we have no way to make the compiler enforce that. Hence, we need to do the checking ourselves.
+Here's an example of the extra `null` checking we need to do. What we really want is that `requiredField` can never be `null`, but we have no way to make the compiler enforce that. Hence, we need to do the checking ourselves.
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/legacy-myclass.png)
 
 You might find it pointless to simply substitute one exception (`NullReferenceException`) with another (`ArgumentNullException`), but it really isn't. A `NullReferenceException` can emerge from deep within your code, without any hint about what shouldn't have been `null`, forcing you to sit down and inspect or debug the code in order to find out what's wrong. If you're lucky you have symbol files with a reference to the line number where the exception was thrown, but in production code the line numbers are often wrong due to optimized code, or the symbol files are missing altogether. An `ArgumentNullException` is much more helpful, because it will refer to the problematic argument and hopefully also provide a meaningful error message.
 
-Unfortunately, it's often not possible to know whether a reference can be null. That leaves us with the choice of sprinkling `null` checks all over the code, or just making vague assumptions that some references will never be `null`. Here's an example of the former: 
+Unfortunately, it's often not possible to know whether a reference can be `null`. That leaves us with the choice of sprinkling `null` checks all over the code, or just making vague assumptions that some references will never be `null`. Here's an example of the former: 
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/excessive-null-checking.png)
 
-As professionals, perhaps we're expected to check all code like this? Fine, but in many cases this extra code actually _is_ superfluous. It is quite possible that `_someDependency`, `Foo` and `Bar` can never be null. But we're not getting any hints from the compiler about that. And even if we inspect the code manually and conclude that this is the case, things may change in the future if `SomeDependency` is modified.
+As professionals, perhaps we're expected to check all code like this? Fine, but in many cases this extra code actually _is_ superfluous. It is quite possible that `_someDependency`, `Foo` and `Bar` can never be `null`. But we're not getting any hints from the compiler about that. And even if we inspect the code manually and conclude that this is the case, things may change in the future if `SomeDependency` is modified.
 
 What a mess this is! I'm surprised developers have accepted this state of affairs for so long without rioting! It's certainly easy to see why this is called a _billion dollar mistake_. In fact, that's likely to be an understatement.
 
@@ -27,7 +27,7 @@ Option types is an elegant solution as long as it has been designed into the lan
 In contrast, Kotlin has managed to embrace `null` as part of the language in a way that is both safe and pragmatic. How is that possible? The solution is actually quite straightforward when we focus on what we actually want to achieve: that it should not be possible to dereference a `null` reference. All right, so all references need to explicitly be one of the following:
 
 - Non-nullable
-- Nullable, and thus not possible to dereference without a null check
+- Nullable, and thus not possible to dereference without a `null` check
 
 In a way, this has been available to C# developers for [ten years](https://blogs.msmvps.com/peterritchie/2008/07/21/working-with-resharper-s-external-annotation-xml-files/) already, using the [ReSharper Annotation Framework](https://www.jetbrains.com/resharper/features/code_analysis.html). 
 
@@ -39,7 +39,7 @@ If I now try to set `requiredField` to `null`, ReSharper will catch it:
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/resharper-required-not-null.png)
 
-I will get a similar warning if I try to dereference `optionalField` without checking for null:
+I will get a similar warning if I try to dereference `optionalField` without checking for `null`:
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/resharper-null-reference.png)
 

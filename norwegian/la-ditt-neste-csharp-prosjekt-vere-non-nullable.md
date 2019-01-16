@@ -67,7 +67,6 @@ Det ser vi også når vi forsøker å dereferere `optionalField`:
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/csharp-null-reference.png)
 
 Betyr dette at tida er inne for å gå over all gamal kode og skru på nullable reference types? Ikkje nødvendigvis, for det er ein betydeleg jobb å fikse alle resulterande kompileringsfeil, og ikkje utan risiko for å innføre nye feil. Om du er motivert for det, sjå [her](https://praeclarum.org/2018/12/17/nullable-reference-types.html) og [her](https://codeblog.jonskeet.uk/2018/04/21/first-steps-with-nullable-reference-types/) for ein smakebit på kva du har i vente.
+For bibliotek der du må forvente at du har brukarar som er på eldre versjon av C#, eller som kanskje berre ignorerer dei nye åtvaringane frå kompilatoren, må du vurdere om du skal ta med ekstra nullsjekking, som før. Meir om dette [her](https://csharp.christiannagel.com/2018/06/20/nonnullablereferencetypes/).
 
-Men for nye prosjekt er det ingen tvil. Der er tida inne for å gravlegge `NullReferenceException` ein gong for alle[^interop]!
-
-[^interop]: Dette er under føresetnad at vi snakkar om applikasjonskode der du kan skru på C# 8 overalt. For bibliotek der du må forvente at enkelte brukarar er på eldre versjon av C#, eller som kanskje berre ignorerer dei nye kompileringsåtvaringane, må du vurdere om du skal ta med ekstra nullsjekking, som før. Meir om dette [her](https://csharp.christiannagel.com/2018/06/20/nonnullablereferencetypes/).
+Men for ny applikasjonskode er det ingen tvil. Der er tida inne for å gravlegge `NullReferenceException` ein gong for alle!

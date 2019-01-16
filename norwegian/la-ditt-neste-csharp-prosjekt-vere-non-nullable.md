@@ -8,7 +8,7 @@ Her er eit eksempel på den ekstra nullsjekkinga vi må gjere. Vi vil eigentleg 
 
 Du synest kanskje det ser meiningslaust ut å berre byte ut ein exception (`NullReferenceException`) med ein annan (`ArgumentNullException`) slik, men det er det ikkje. Ein `NullReferenceException` kan oppstå djupt inne i koden, og har ikkje med seg informasjon om kva som ikkje skulle ha vore `null`, så ein blir nødt til å inspisere eller debugge koden for å finne ut kva som er feil. Det er spesielt vanskeleg i produksjonskode der PDB-filene med debug-info enten manglar eller har upresise linjenumre på grunn av optimalisert kode. Ein `ArgumentNullException` er langt meir hjelpsom på kva du som utviklar treng å fikse, enten den har med seg ei konkret feilmelding som i eksempelet over, eller berre ei henvisning til argumentet som var `null`.
 
-Dessverre er det ofte ikkje råd å vite om ein referanse kan vere `null` eller ikkje, og då må vi velge om vi skal legge inn `null`-sjekking overalt i koden, eller rett og slett stole på at enkelte ting ikkje kjem til å vere `null`. Her er eit eksempel på det fyrste: 
+Dessverre er det ofte ikkje råd å vite om ein referanse kan vere `null` eller ikkje, og då må vi velge om vi skal legge inn null-sjekking overalt i koden, eller rett og slett stole på at enkelte ting ikkje kjem til å vere `null`. Her er eit eksempel på det fyrste: 
 
 ![](https://github.com/torhovland/torhovland.github.io/raw/master/img/non-nullable/excessive-null-checking.png)
 
@@ -23,7 +23,7 @@ Option types er ei god løysing så lenge det er designa inn i språket frå sta
 I Kotlin har ein klart å omfamne `null` som ein del av språket og likevel oppnå robust handtering av dei. Løysinga er eigentleg ganske enkel når ein ser litt nærare på kva vi ynskjer å oppnå: at det ikkje skal gå an å dereferere ein referanse som er `null`. Greit, så dermed må alle referansar eksplisitt vere eitt av følgande:
 
 - Ikkje nullbar (_non-nullable_).
-- Nullbar, og dermed ikkje lov å dereferere utan ein tilhøyrande `null`-sjekk.
+- Nullbar, og dermed ikkje lov å dereferere utan ein tilhøyrande null-sjekk.
 
 Vi har faktisk på ein måte hatt denne moglegheita i C# i [ti år](https://blogs.msmvps.com/peterritchie/2008/07/21/working-with-resharper-s-external-annotation-xml-files/) allereie, ved hjelp av [ReSharper Annotation Framework](https://www.jetbrains.com/resharper/features/code_analysis.html). Ved å markere kode med attributt, kan ReSharper hjelpe oss der typesystemet til C# ikkje har kunna. Her er eit eksempel:
 
@@ -70,4 +70,4 @@ Betyr dette at tida er inne for å gå over all gamal kode og skru på nullable 
 
 Men for nye prosjekt er det ingen tvil. Der er tida inne for å gravlegge `NullReferenceException` ein gong for alle[^interop]!
 
-[^interop]: Dette er under føresetnad at vi snakkar om applikasjonskode der du kan skru på C# 8 overalt. For bibliotek der du må forvente at enkelte brukarar er på eldre versjon av C#, eller som kanskje berre ignorerer dei nye kompileringsåtvaringane, må du vurdere om du skal ta med ekstra `null`-sjekking, som før. Meir om dette [her](https://csharp.christiannagel.com/2018/06/20/nonnullablereferencetypes/).
+[^interop]: Dette er under føresetnad at vi snakkar om applikasjonskode der du kan skru på C# 8 overalt. For bibliotek der du må forvente at enkelte brukarar er på eldre versjon av C#, eller som kanskje berre ignorerer dei nye kompileringsåtvaringane, må du vurdere om du skal ta med ekstra null-sjekking, som før. Meir om dette [her](https://csharp.christiannagel.com/2018/06/20/nonnullablereferencetypes/).

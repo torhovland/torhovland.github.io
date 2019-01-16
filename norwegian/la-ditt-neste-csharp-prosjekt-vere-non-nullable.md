@@ -20,7 +20,7 @@ Dei fleste programmeringsspråk har dessverre arva `null`, men ein del språk, s
 
 Option types er ei god løysing så lenge det er designa inn i språket frå starten av. Å skulle ettermontere det i språk som C# og Java er derimot problematisk, fordi det innfører ein ny måte å representere og sjekke manglande verdiar på, samtidig som ein framleis må handtere `null` i samkvem med eldre kode. Likevel er det nettopp dette som har skjedd i Java 8, med den nye `Optional`-typen.
 
-I Kotlin har ein klart å omfamne `null` som ein del av språket og likevel oppnå robust handtering av dei. Løysinga er eigentleg ganske enkel når ein ser litt nærare på kva vi ynskjer å oppnå: at det ikkje skal gå an å dereferere ein referanse som er `null`. Greit, så dermed må alle referansar eksplisitt vere eitt av følgande:
+I Kotlin har ein klart å omfamne `null` som ein del av språket og likevel få til robust handtering av dei. Løysinga er eigentleg ganske enkel når ein ser litt nærare på kva vi ynskjer å oppnå: at det ikkje skal gå an å dereferere ein referanse som er `null`. Greit, så dermed må alle referansar eksplisitt vere eitt av følgande:
 
 - Ikkje nullbar (_non-nullable_).
 - Nullbar, og dermed ikkje lov å dereferere utan ein tilhøyrande nullsjekk.
